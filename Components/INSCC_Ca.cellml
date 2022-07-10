@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Non_Selective_Cation_Channel_Ca-->
+<model name="INSCC_Ca" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../Common/units.cellml">
+        <units name="picosiemens" units_ref="picosiemens"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <component name="I_NSCC_Ca">
+        <variable name="I_NSCC_Ca" public_interface="out" units="picoampere"/>
+        <variable initial_value="0.12" name="gNSCC_Ca_" units="picosiemens"/>
+        <variable name="gNSCC_Ca" units="picosiemens"/>
+        <variable name="hNSCC" public_interface="in" units="dimensionless"/>
+        <variable name="Vm" public_interface="in" units="millivolt"/>
+        <variable name="ENSCC" public_interface="in" units="millivolt"/>
+        <variable name="KNSCC" public_interface="in" units="micromolar"/>
+        <variable name="CS1" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>gNSCC_Ca</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>gNSCC_Ca_</ci>
+                        <apply>
+                            <power/>
+                            <ci>KNSCC</ci>
+                            <ci>hNSCC</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <power/>
+                            <ci>KNSCC</ci>
+                            <ci>hNSCC</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>CS1</ci>
+                            <ci>hNSCC</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_NSCC_Ca</ci>
+                <apply>
+                    <times/>
+                    <ci>gNSCC_Ca</ci>
+                    <apply>
+                        <minus/>
+                        <ci>Vm</ci>
+                        <ci>ENSCC</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

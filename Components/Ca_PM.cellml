@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Ca_PM" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Plasma-membrane-Ca-ATPase-pump-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="femtoampere" units_ref="femtoampere"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="I_PM">
+        <variable name="I_PM" public_interface="out" units="picoampere"/>
+        <variable initial_value="420.0" name="gPM" units="femtoampere"/>
+        <variable initial_value="1.0" name="KPM" units="micromolar"/>
+        <variable name="CS1" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>I_PM</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>gPM</ci>
+                        <apply>
+                            <power/>
+                            <ci>CS1</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <power/>
+                            <ci>KPM</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>CS1</ci>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

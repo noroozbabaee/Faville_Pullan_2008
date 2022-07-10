@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Parameters" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="units.cellml">
+        <units name="micromolar_coulomb" units_ref="micromolar_coulomb"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="picosiemens" units_ref="picosiemens"/>
+        <units name="attojoule_per_zeptomole_kelvin" units_ref="attojoule_per_zeptomole_kelvin"/>
+        <units name="femtocoulomb_per_zeptomole" units_ref="femtocoulomb_per_zeptomole"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <component name="model_parameters">
+        <variable initial_value="8.314E-3" name="R" public_interface="out" units="attojoule_per_zeptomole_kelvin"/>
+        <variable initial_value="0.09649" name="F" public_interface="out" units="femtocoulomb_per_zeptomole"/>
+        <variable initial_value="310.16" name="T" public_interface="out" units="kelvin"/>
+        <variable initial_value="1.8E3" name="CO" public_interface="out" units="micromolar"/>
+        <variable initial_value="1.0" name="P" public_interface="out" units="micromolar"/>
+        <variable initial_value="26.0" name="delta_s" public_interface="out" units="micromolar_coulomb"/>
+        <variable initial_value="100.0" name="gamma_S1" public_interface="out" units="dimensionless"/>
+        <variable initial_value="1.0" name="gamma_S2" public_interface="out" units="dimensionless"/>
+        <variable initial_value="200.0" name="gamma_MT" public_interface="out" units="dimensionless"/>
+        <variable initial_value="20.0" name="gamma_ER" public_interface="out" units="dimensionless"/>
+        <variable initial_value="0.12" name="KNSCC" public_interface="out" units="micromolar"/>
+        <variable initial_value="0.0" name="ENSCC" public_interface="out" units="millivolt"/>
+        <variable initial_value="3.0" name="hNSCC" public_interface="out" units="dimensionless"/>
+    </component>
+</model>

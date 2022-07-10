@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Ca_S1" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Ca-Concentration-Subspace1-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="micromolar_coulomb" units_ref="micromolar_coulomb"/>
+    </import>
+    <component name="CS1">
+        <variable initial_value="0.120" name="CS1" public_interface="out" units="micromolar"/>
+        <variable name="lambda_MT_S1" units="dimensionless"/>
+        <variable name="lambda_ER_S1" units="dimensionless"/>
+        <variable name="JS1S2" public_interface="in" units="flux"/>
+        <variable name="JNCX" public_interface="in" units="flux"/>
+        <variable name="JSERCA" public_interface="in" units="flux"/>
+        <variable name="I_iCa" public_interface="in" units="picoampere"/>
+        <variable name="delta_s" public_interface="in" units="micromolar_coulomb"/>
+        <variable name="gamma_S1" public_interface="in" units="dimensionless"/>
+        <variable name="gamma_MT" public_interface="in" units="dimensionless"/>
+        <variable name="gamma_ER" public_interface="in" units="dimensionless"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>CS1</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <plus/>
+                        <ci>JS1S2</ci>
+                        <apply>
+                            <times/>
+                            <ci>lambda_MT_S1</ci>
+                            <ci>JNCX</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <apply>
+                                <divide/>
+                                <ci>delta_s</ci>
+                                <cn cellml:units="dimensionless">2.0</cn>
+                            </apply>
+                            <ci>I_iCa</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>lambda_ER_S1</ci>
+                            <ci>JSERCA</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>lambda_MT_S1</ci>
+                <apply>
+                    <divide/>
+                    <ci>gamma_MT</ci>
+                    <ci>gamma_S1</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>lambda_ER_S1</ci>
+                <apply>
+                    <divide/>
+                    <ci>gamma_ER</ci>
+                    <ci>gamma_S1</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

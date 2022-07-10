@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="J_S1S2" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Ca-flux-intercytoplasmic-subspace-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+    </import>
+    <component name="JS1S2">
+        <variable name="JS1S2" public_interface="out" units="flux"/>
+        <variable initial_value="0.04" name="mu_S1S2" units="first_order_rate_constant"/>
+        <variable name="CS1" public_interface="in" units="micromolar"/>
+        <variable name="CS2" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>JS1S2</ci>
+                <apply>
+                    <times/>
+                    <ci>mu_S1S2</ci>
+                    <apply>
+                        <minus/>
+                        <ci>CS2</ci>
+                        <ci>CS1</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

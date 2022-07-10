@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="J_SERCA" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Ca_ATPase-Sarcoendoplasmic-Reticulum -->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="per_micromolar" units_ref="per_micromolar"/>
+        <units name="per_micromolar2" units_ref="per_micromolar2"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+    </import>
+    <component name="JSERCA">
+        <variable name="JSERCA" public_interface="out" units="flux"/>
+        <variable initial_value="1.0E5" name="VSERCA" units="first_order_rate_constant"/>
+        <variable initial_value="6E-4" name="A2" units="dimensionless"/>
+        <variable initial_value="3.57" name="A4" units="per_micromolar"/>
+        <variable initial_value="2.7E-5" name="A5" units="per_micromolar"/>
+        <variable initial_value="2.31E-5" name="A6" units="per_micromolar2"/>
+        <variable name="CER" public_interface="in" units="micromolar"/>
+        <variable name="CS1" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>JSERCA</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>VSERCA</ci>
+                        <apply>
+                            <minus/>
+                            <ci>CS1</ci>
+                            <apply>
+                                <times/>
+                                <ci>A2</ci>
+                                <ci>CER</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                        <apply>
+                            <times/>
+                            <ci>A4</ci>
+                            <ci>CS1</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>A5</ci>
+                            <ci>CER</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>A6</ci>
+                            <ci>CS1</ci>
+                            <ci>CER</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="N_S1" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../Common/units.cellml">
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+    </import>
+    <component name="NS1">
+        <variable initial_value="1.01E4" name="NS1" public_interface="out" units="micromolar"/>
+        <variable name="delta_s" public_interface="in" units="micromolar_coulomb"/>
+        <variable name="I_iNa" public_interface="in" units="picoampere"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>NS1</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <minus/>
+                            <ci>delta_s</ci>
+                        </apply>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                    </apply>
+                    <ci>I_iNa</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="J_NCX" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Ca_Na_Exchanger-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="JNCX">
+        <variable name="JNCX" public_interface="out" units="flux"/>
+        <variable initial_value="0.5" name="VNCX" units="flux"/>
+        <variable initial_value="0.3" name="KNCX" units="micromolar"/>
+        <variable name="CMT" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>JNCX</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>VNCX</ci>
+                        <ci>CMT</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>CMT</ci>
+                        <ci>KNCX</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

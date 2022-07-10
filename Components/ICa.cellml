@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="ICa" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!--Inward-Ca-Plasma-Membrane-Conductances-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="picosiemens" units_ref="picosiemens"/>
+        <units name="attojoule_per_zeptomole_kelvin" units_ref="attojoule_per_zeptomole_kelvin"/>
+        <units name="femtocoulomb_per_zeptomole" units_ref="femtocoulomb_per_zeptomole"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <component name="I_Ca">
+        <variable name="I_Ca" public_interface="out" units="picoampere"/>
+        <variable initial_value="0.01" name="gCa" units="picosiemens"/>
+        <variable name="ECa" units="millivolt"/>
+        <variable name="Vm" public_interface="in" units="millivolt"/>
+        <variable name="T" public_interface="in" units="kelvin"/>
+        <variable name="R" public_interface="in" units="attojoule_per_zeptomole_kelvin"/>
+        <variable name="F" public_interface="in" units="femtocoulomb_per_zeptomole"/>
+        <variable name="CO" public_interface="in" units="micromolar"/>
+        <variable name="CS1" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>ECa</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <ci>R</ci>
+                            <ci>T</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="dimensionless">2.0</cn>
+                            <ci>F</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <ln/>
+                        <apply>
+                            <divide/>
+                            <ci>CO</ci>
+                            <ci>CS1</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_Ca</ci>
+                <apply>
+                    <times/>
+                    <ci>gCa</ci>
+                    <apply>
+                        <minus/>
+                        <ci>Vm</ci>
+                        <ci>ECa</ci>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="I_Na_p" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Na-pump -->
+    <import xlink:href="../Common/units.cellml">
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="femtoampere" units_ref="femtoampere"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="I_Na">
+        <variable name="I_Na" public_interface="out" units="picoampere"/>
+        <variable initial_value="1.5E4" name="gNa" units="femtoampere"/>
+        <variable initial_value="1.0E4" name="KNa" units="micromolar"/>
+        <variable initial_value="4.0" name="hNa" units="dimensionless"/>
+        <variable name="NS1" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>I_Na</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>gNa</ci>
+                        <apply>
+                            <power/>
+                            <ci>NS1</ci>
+                            <ci>hNa</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <power/>
+                            <ci>KNa</ci>
+                            <ci>hNa</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>NS1</ci>
+                            <ci>hNa</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

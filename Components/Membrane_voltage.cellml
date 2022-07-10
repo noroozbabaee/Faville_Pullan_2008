@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Membrane_voltage" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../Common/units.cellml">
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="picofarad" units_ref="picofarad"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <component name="membrane">
+        <variable initial_value="-70.1" name="Vm" public_interface="out" units="millivolt"/>
+        <variable name="I_iCa" public_interface="out" units="picoampere"/>
+        <variable name="I_iNa" public_interface="out" units="picoampere"/>
+        <variable initial_value="20.0" name="Cm" units="picofarad"/>
+        <variable name="I_Ca" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_Na" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_NSCC_Ca" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_NSCC_Na" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_PM" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>I_iCa</ci>
+                <apply>
+                    <plus/>
+                    <ci>I_Ca</ci>
+                    <ci>I_NSCC_Ca</ci>
+                    <ci>I_PM</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_iNa</ci>
+                <apply>
+                    <plus/>
+                    <ci>I_NSCC_Na</ci>
+                    <ci>I_Na</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>Vm</ci>
+                </apply>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <plus/>
+                            <ci>I_iCa</ci>
+                            <ci>I_iNa</ci>
+                        </apply>
+                    </apply>
+                    <ci>Cm</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Ca_MT" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Mitochondrial-Ca-buffer -->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="CMT">
+        <variable initial_value="0.220" name="CMT" public_interface="out" units="micromolar"/>
+        <variable name="fm" units="dimensionless"/>
+        <variable initial_value="0.01" name="Km" units="micromolar"/>
+        <variable initial_value="100.0" name="Bm" units="micromolar"/>
+        <variable name="JMCU" public_interface="in" units="flux"/>
+        <variable name="JNCX" public_interface="in" units="flux"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>CMT</ci>
+                </apply>
+                <apply>
+                    <times/>
+                    <ci>fm</ci>
+                    <apply>
+                        <minus/>
+                        <ci>JMCU</ci>
+                        <ci>JNCX</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>fm</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1.0</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>Km</ci>
+                                <ci>Bm</ci>
+                            </apply>
+                            <apply>
+                                <power/>
+                                <apply>
+                                    <plus/>
+                                    <ci>Km</ci>
+                                    <ci>CMT</ci>
+                                </apply>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

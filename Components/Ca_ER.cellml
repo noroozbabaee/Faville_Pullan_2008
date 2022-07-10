@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Ca_ER" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="CER">
+        <variable initial_value="203.0" name="CER" public_interface="out" units="micromolar"/>
+        <variable name="JSERCA" public_interface="in" units="flux"/>
+        <variable name="JIPR" public_interface="in" units="flux"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>CER</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>JSERCA</ci>
+                    <ci>JIPR</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

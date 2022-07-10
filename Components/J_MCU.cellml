@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="J_MCU" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- high-capacity-low-Ca2-affinity-conductance  -->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="JMCU">
+        <variable name="JMCU" public_interface="out" units="flux"/>
+        <variable initial_value="800.0" name="VMCU" units="flux"/>
+        <variable initial_value="10.0" name="KMCU" units="micromolar"/>
+        <variable name="epsilon_INH" units="dimensionless"/>
+        <variable initial_value="10.0" name="KINH" units="micromolar"/>
+        <variable initial_value="4.0" name="hINH" units="dimensionless"/>
+        <variable name="CS2" public_interface="in" units="micromolar"/>
+        <variable name="CMT" public_interface="in" units="micromolar"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>JMCU</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <ci>VMCU</ci>
+                            <apply>
+                                <power/>
+                                <ci>CS2</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <apply>
+                                <power/>
+                                <ci>KMCU</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                            <apply>
+                                <power/>
+                                <ci>CS2</ci>
+                                <cn cellml:units="dimensionless">2</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <ci>epsilon_INH</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>epsilon_INH</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <power/>
+                        <ci>KINH</ci>
+                        <ci>hINH</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <power/>
+                            <ci>KINH</ci>
+                            <ci>hINH</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>CMT</ci>
+                            <ci>hINH</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

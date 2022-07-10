@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="Ca_S2" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Ca-Concentration-Subspace2-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="CS2">
+        <variable initial_value="0.023" name="CS2" public_interface="out" units="micromolar"/>
+        <variable name="lambda_MT_S2" units="dimensionless"/>
+        <variable name="lambda_ER_S2" units="dimensionless"/>
+        <variable name="lambda_S1_S2" units="dimensionless"/>
+        <variable name="JS1S2" public_interface="in" units="flux"/>
+        <variable name="JMCU" public_interface="in" units="flux"/>
+        <variable name="JIPR" public_interface="in" units="flux"/>
+        <variable name="gamma_S1" public_interface="in" units="dimensionless"/>
+        <variable name="gamma_S2" public_interface="in" units="dimensionless"/>
+        <variable name="gamma_MT" public_interface="in" units="dimensionless"/>
+        <variable name="gamma_ER" public_interface="in" units="dimensionless"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>CS2</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>lambda_ER_S2</ci>
+                        <ci>JIPR</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>lambda_S1_S2</ci>
+                            <ci>JS1S2</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>lambda_MT_S2</ci>
+                            <ci>JMCU</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>lambda_MT_S2</ci>
+                <apply>
+                    <divide/>
+                    <ci>gamma_MT</ci>
+                    <ci>gamma_S2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>lambda_ER_S2</ci>
+                <apply>
+                    <divide/>
+                    <ci>gamma_ER</ci>
+                    <ci>gamma_S2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>lambda_S1_S2</ci>
+                <apply>
+                    <divide/>
+                    <ci>gamma_S1</ci>
+                    <ci>gamma_S2</ci>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>

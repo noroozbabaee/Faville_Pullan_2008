@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="J_IPR3" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- IP3R-releases-Ca-from-ER-stores-into-the-cytosol-->
+    <import xlink:href="../Common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+        <units name="per_second_squared" units_ref="per_second_squared"/>
+        <units name="micromolar" units_ref="micromolar"/>
+    </import>
+    <component name="JIPR">
+        <variable name="JIPR" public_interface="out" units="flux"/>
+        <variable initial_value="2000.0" name="kIPR" units="first_order_rate_constant"/>
+        <variable initial_value="6.4" name="k_1" units="flux"/>
+        <variable initial_value="0.0" name="k1" units="first_order_rate_constant"/>
+        <variable initial_value="4.0" name="k2" units="first_order_rate_constant"/>
+        <variable initial_value="200.0" name="r2" units="first_order_rate_constant"/>
+        <variable initial_value="0.0" name="r_2" units="flux"/>
+        <variable initial_value="750.0" name="r4" units="first_order_rate_constant"/>
+        <variable initial_value="36.0" name="R1" units="micromolar"/>
+        <variable initial_value="300.0" name="R3" units="micromolar"/>
+        <variable name="phi1" units="first_order_rate_constant"/>
+        <variable name="phi_1" units="flux"/>
+        <variable name="phi2" units="first_order_rate_constant"/>
+        <variable initial_value="0.306" name="phi3" units="first_order_rate_constant"/>
+        <variable initial_value="0.787" name="H" units="dimensionless"/>
+        <variable initial_value="300.0" name="g_beta" units="first_order_rate_constant"/>
+        <variable initial_value="2.0" name="h_beta" units="dimensionless"/>
+        <variable initial_value="0.02" name="g_alpha" units="per_second_squared"/>
+        <variable initial_value="2.0" name="K_beta" units="micromolar"/>
+        <variable name="alpha_phi3" units="per_second_squared"/>
+        <variable name="beta_phi3" units="first_order_rate_constant"/>
+        <variable name="CER" public_interface="in" units="micromolar"/>
+        <variable name="CS2" public_interface="in" units="micromolar"/>
+        <variable name="P" public_interface="in" units="micromolar"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>H</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <apply>
+                        <times/>
+                        <ci>phi3</ci>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1.0</cn>
+                            <ci>H</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>P</ci>
+                                <ci>phi1</ci>
+                                <ci>phi2</ci>
+                            </apply>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>P</ci>
+                                    <ci>phi1</ci>
+                                </apply>
+                                <ci>phi_1</ci>
+                            </apply>
+                        </apply>
+                        <ci>H</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JIPR</ci>
+                <apply>
+                    <times/>
+                    <ci>kIPR</ci>
+                    <apply>
+                        <power/>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>P</ci>
+                                <ci>phi1</ci>
+                                <ci>H</ci>
+                            </apply>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>P</ci>
+                                    <ci>phi1</ci>
+                                </apply>
+                                <ci>phi_1</ci>
+                            </apply>
+                        </apply>
+                        <cn cellml:units="dimensionless">4.0</cn>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <ci>CER</ci>
+                        <ci>CS2</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>phi1</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>k1</ci>
+                            <ci>R1</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>r2</ci>
+                            <ci>CS2</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R1</ci>
+                        <ci>CS2</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>phi_1</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <plus/>
+                            <ci>k_1</ci>
+                            <ci>r_2</ci>
+                        </apply>
+                        <ci>R3</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R3</ci>
+                        <ci>CS2</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>phi2</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>k2</ci>
+                            <ci>R3</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>r4</ci>
+                            <ci>CS2</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>R3</ci>
+                        <ci>CS2</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>phi3</ci>
+                </apply>
+                <apply>
+                    <minus/>
+                    <ci>alpha_phi3</ci>
+                    <apply>
+                        <times/>
+                        <ci>beta_phi3</ci>
+                        <ci>phi3</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>alpha_phi3</ci>
+                <ci>g_alpha</ci>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>beta_phi3</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>g_beta</ci>
+                        <apply>
+                            <power/>
+                            <ci>CS2</ci>
+                            <ci>h_beta</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <power/>
+                            <ci>K_beta</ci>
+                            <ci>h_beta</ci>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <ci>CS2</ci>
+                            <ci>h_beta</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+    </component>
+</model>
