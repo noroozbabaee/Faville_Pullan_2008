@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_Ca_Exchanger" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+    </import>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="model_parameters" name="model_parameters"/>
+        <component component_ref="model_initials" name="model_initials"/>
+    </import>
+    <import xlink:href="../common/environment.cellml">
+        <component component_ref="environment" name="environment"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <import xlink:href="../Ca_Intracellular_Flux(J_S1S2)/J_S1S2.cellml">
+        <component component_ref="JS1S2" name="JS1S2"/>
+    </import>
+    <connection>
+        <map_components component_1="JS1S2" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="experiment" component_2="JS1S2"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
+        <map_variables variable_1="CS2" variable_2="CS2"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <component name="outputs">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="JS1S2" public_interface="in" units="flux"/>
+    </component>
+    <connection>
+        <map_components component_1="outputs" component_2="JS1S2"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="JS1S2" variable_2="JS1S2"/>
+    </connection>
+</model>

@@ -6,13 +6,14 @@
         <units name="micromolar" units_ref="micromolar"/>
     </import>
     <component name="CS2">
-        <variable initial_value="0.023" name="CS2" public_interface="out" units="micromolar"/>
+        <variable name="CS2_initial" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable initial_value="CS2_initial" name="CS2" public_interface="out" units="micromolar"/>
         <variable name="lambda_MT_S2" units="dimensionless"/>
         <variable name="lambda_ER_S2" units="dimensionless"/>
         <variable name="lambda_S1_S2" units="dimensionless"/>
-        <variable name="JS1S2" public_interface="in" units="flux"/>
-        <variable name="JMCU" public_interface="in" units="flux"/>
-        <variable name="JIPR" public_interface="in" units="flux"/>
+        <variable name="JS1S2" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JMCU" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JIPR" private_interface="out" public_interface="in" units="flux"/>
         <variable name="gamma_S1" public_interface="in" units="dimensionless"/>
         <variable name="gamma_S2" public_interface="in" units="dimensionless"/>
         <variable name="gamma_MT" public_interface="in" units="dimensionless"/>

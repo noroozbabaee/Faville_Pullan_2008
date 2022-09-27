@@ -27,7 +27,7 @@
         <variable initial_value="0.04" name="mu_S1S2" public_interface="out" units="first_order_rate_constant"/>
     </component>
     <component name="model_initials">
-        <variable initial_value="0.12" name="CS1_initial" public_interface="out" units="micromolar"/>
-        <variable initial_value="0.023" name="CS2_initial" public_interface="out" units="micromolar"/>
+        <variable initial_value="0.12" name="CS1_initial" private_interface="out" units="micromolar"/>
+        <variable initial_value="0.023" name="CS2_initial" private_interface="out" units="micromolar"/>
     </component>
 </model>

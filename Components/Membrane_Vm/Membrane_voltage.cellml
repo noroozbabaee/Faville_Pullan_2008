@@ -4,9 +4,21 @@
         <units name="picoampere" units_ref="picoampere"/>
         <units name="picofarad" units_ref="picofarad"/>
         <units name="millivolt" units_ref="millivolt"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="flux" units_ref="flux"/>
     </import>
-    <component name="membrane">
+    <component name="Vm">
         <variable initial_value="-70.1" name="Vm" public_interface="out" units="millivolt"/>
+        <variable name="CER" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="NS1" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CMT" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CS1" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CS2" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="JIPR" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JMCU" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JNCX" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JS1S2" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JSERCA" private_interface="out" public_interface="in" units="flux"/>
         <variable name="I_iCa" public_interface="out" units="picoampere"/>
         <variable name="I_iNa" public_interface="out" units="picoampere"/>
         <variable initial_value="20.0" name="Cm" units="picofarad"/>

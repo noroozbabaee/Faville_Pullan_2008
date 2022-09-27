@@ -10,7 +10,20 @@
         <variable initial_value="0.5" name="VNCX" units="flux"/>
         <variable initial_value="0.3" name="KNCX" units="micromolar"/>
         <variable name="CMT" public_interface="in" units="micromolar"/>
+        <variable initial_value="0" name="m" public_interface="out" units="dimensionless"/>
+        <variable name="time" public_interface="in" units="second"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>m</ci>
+                </apply>
+                <cn cellml:units="dimensionless">1</cn>
+            </apply>
             <apply>
                 <eq/>
                 <ci>JNCX</ci>

@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="generator" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="millivolt" units_ref="millivolt"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+    </import>
+    <!--    def import using "../common/environment.cellml" for
+        comp environment using comp environment;
+    enddef;-->
+    <!--    def map between experiment and environment for
+        vars time and time;
+    enddef;-->
+    <component name="experiment">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="Vm" private_interface="out" public_interface="out" units="millivolt"/>
+        <variable name="I_iCa" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_iNa" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_Ca" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_Na" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_NSCC_Ca" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_NSCC_Na" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="I_PM" private_interface="out" public_interface="out" units="picoampere"/>
+        <variable name="CER" private_interface="out" public_interface="out" units="micromolar"/>
+        <variable name="NS1" private_interface="out" public_interface="out" units="micromolar"/>
+        <variable name="CMT" private_interface="out" public_interface="out" units="micromolar"/>
+        <variable name="CS1" private_interface="out" public_interface="out" units="micromolar"/>
+        <variable name="CS2" private_interface="out" public_interface="out" units="micromolar"/>
+        <variable name="JMCU" private_interface="out" public_interface="out" units="flux"/>
+        <variable name="JNCX" private_interface="out" public_interface="out" units="flux"/>
+        <variable name="JS1S2" private_interface="out" public_interface="out" units="flux"/>
+        <variable name="JSERCA" private_interface="out" public_interface="out" units="flux"/>
+        <variable name="JIPR" private_interface="out" public_interface="out" units="flux"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>Vm</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="dimensionless">50</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="millivolt">1</cn>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="millivolt">1</cn>
+                            <apply>
+                                <sin/>
+                                <apply>
+                                    <divide/>
+                                    <ci>time</ci>
+                                    <cn cellml:units="first_order_rate_constant">3.0096</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JNCX</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.025</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="flux">0.25</cn>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="flux">1</cn>
+                            <apply>
+                                <sin/>
+                                <apply>
+                                    <divide/>
+                                    <ci>time</ci>
+                                    <cn cellml:units="first_order_rate_constant">3.0096</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JIPR</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="dimensionless">0.011</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="flux">0.25</cn>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="flux">1</cn>
+                            <apply>
+                                <sin/>
+                                <apply>
+                                    <divide/>
+                                    <ci>time</ci>
+                                    <cn cellml:units="first_order_rate_constant">3.0096</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JSERCA</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.001</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="flux">0.25</cn>
+                        <apply>
+                            <sin/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">14.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JS1S2</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.0096</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="flux">0.1</cn>
+                        <apply>
+                            <sin/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">7.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>JMCU</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.0025</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="flux">0.25</cn>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="flux">1</cn>
+                            <apply>
+                                <sin/>
+                                <apply>
+                                    <divide/>
+                                    <ci>time</ci>
+                                    <cn cellml:units="first_order_rate_constant">5.0096</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_iNa</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="picoampere">500</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.4</cn>
+                        <apply>
+                            <cos/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">14.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_iCa</ci>
+                <apply>
+                    <times/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="picoampere">3.50</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.4</cn>
+                        <apply>
+                            <cos/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">14.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_Na</ci>
+                <apply>
+                    <times/>
+                    <cn cellml:units="picoampere">500</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <cos/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">14.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_Ca</ci>
+                <apply>
+                    <times/>
+                    <cn cellml:units="picoampere">50</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">0.4</cn>
+                        <apply>
+                            <cos/>
+                            <apply>
+                                <divide/>
+                                <ci>time</ci>
+                                <cn cellml:units="first_order_rate_constant">14.0096</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_NSCC_Na</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="picoampere">50</cn>
+                        <cn cellml:units="dimensionless">1</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <minus/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <times/>
+                                        <cn cellml:units="first_order_rate_constant">0.5</cn>
+                                        <ci>time</ci>
+                                    </apply>
+                                    <cn cellml:units="dimensionless">50</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_NSCC_Ca</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="picoampere">50</cn>
+                        <cn cellml:units="dimensionless">1</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <minus/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <times/>
+                                        <cn cellml:units="first_order_rate_constant">0.5</cn>
+                                        <ci>time</ci>
+                                    </apply>
+                                    <cn cellml:units="dimensionless">50</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>I_PM</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <minus/>
+                        <cn cellml:units="picoampere">50</cn>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="picoampere">50</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="first_order_rate_constant">0.5</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>CER</ci>
+                <apply>
+                    <plus/>
+                    <cn cellml:units="micromolar">0.0003</cn>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="micromolar">0.0096</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="rate_constants_units">0.5</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>NS1</ci>
+                <apply>
+                    <plus/>
+                    <cn cellml:units="micromolar">0.0001</cn>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="micromolar">0.0096</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="rate_constants_units">0.5</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>CMT</ci>
+                <apply>
+                    <plus/>
+                    <cn cellml:units="micromolar">0.0003</cn>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="micromolar">0.0096</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="rate_constants_units">0.5</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>CS1</ci>
+                <apply>
+                    <plus/>
+                    <cn cellml:units="micromolar">0.01</cn>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="micromolar">0.009</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="rate_constants_units">0.3</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>CS2</ci>
+                <apply>
+                    <plus/>
+                    <cn cellml:units="micromolar">0.001</cn>
+                    <apply>
+                        <divide/>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="micromolar">0.0096</cn>
+                            <cn cellml:units="dimensionless">1</cn>
+                        </apply>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="rate_constants_units">0.5</cn>
+                                            <ci>time</ci>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">100</cn>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+        </math>
+        <variable initial_value="0" name="m" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>m</ci>
+                </apply>
+                <cn cellml:units="first_order_rate_constant">1</cn>
+            </apply>
+        </math>
+    </component>
+</model>

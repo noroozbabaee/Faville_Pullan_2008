@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_Ca_PM" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+    </import>
+    <import xlink:href="../common/environment.cellml">
+        <component component_ref="environment" name="environment"/>
+    </import>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="model_parameters" name="model_parameters"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="I_PM"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
+    </connection>
+    <connection>
+        <map_components component_1="experiment" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <import xlink:href="Ca_PM.cellml">
+        <component component_ref="I_PM" name="I_PM"/>
+    </import>
+    <connection>
+        <map_components component_1="environment" component_2="I_PM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <component name="outputs">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="I_PM" private_interface="in" units="picoampere"/>
+    </component>
+    <connection>
+        <map_components component_1="outputs" component_2="I_PM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="I_PM" variable_2="I_PM"/>
+    </connection>
+</model>

@@ -9,8 +9,8 @@
     <component name="JS1S2">
         <variable name="JS1S2" public_interface="out" units="flux"/>
         <variable initial_value="0.04" name="mu_S1S2" units="first_order_rate_constant"/>
-        <variable name="CS1" public_interface="in" units="micromolar"/>
-        <variable name="CS2" public_interface="in" units="micromolar"/>
+        <variable name="CS1" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CS2" private_interface="out" public_interface="in" units="micromolar"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -24,6 +24,21 @@
                         <ci>CS1</ci>
                     </apply>
                 </apply>
+            </apply>
+        </math>
+        <variable initial_value="0" name="m" public_interface="out" units="dimensionless"/>
+        <variable name="time" public_interface="in" units="second"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>m</ci>
+                </apply>
+                <cn cellml:units="dimensionless">1</cn>
             </apply>
         </math>
     </component>

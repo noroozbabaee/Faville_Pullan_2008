@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_CER" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <import xlink:href="../common/environment.cellml">
+        <component component_ref="environment" name="environment"/>
+    </import>
+    <import xlink:href="../CER(Ca_ER)/Ca_ER.cellml">
+        <component component_ref="CER" name="CER"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="CER"/>
+        <map_variables variable_1="JSERCA" variable_2="JSERCA"/>
+        <map_variables variable_1="JIPR" variable_2="JIPR"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="experiment" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <component name="outputs">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="CER" public_interface="in" units="picoampere"/>
+    </component>
+    <connection>
+        <map_components component_1="outputs" component_2="CER"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="CER" variable_2="CER"/>
+    </connection>
+</model>

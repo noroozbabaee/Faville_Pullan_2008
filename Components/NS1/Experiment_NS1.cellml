@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_INKCC" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <import xlink:href="../common/environment.cellml">
+        <component component_ref="environment" name="environment"/>
+    </import>
+    <import xlink:href="../NS1/N_S1.cellml">
+        <component component_ref="NS1" name="NS1"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="NS1"/>
+        <map_variables variable_1="I_iNa" variable_2="I_iNa"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="experiment" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="model_parameters" name="model_parameters"/>
+    </import>
+    <connection>
+        <map_components component_1="model_parameters" component_2="NS1"/>
+        <map_variables variable_1="delta_s" variable_2="delta_s"/>
+    </connection>
+    <component name="outputs">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="NS1" public_interface="in" units="micromolar"/>
+    </component>
+    <connection>
+        <map_components component_1="outputs" component_2="NS1"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="NS1" variable_2="NS1"/>
+    </connection>
+</model>

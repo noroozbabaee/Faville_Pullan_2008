@@ -20,56 +20,79 @@
     <import xlink:href="../Common/parameters.cellml">
         <component component_ref="model_parameters" name="model_parameters"/>
     </import>
-    <import xlink:href="../Components/J_S1S2.cellml">
+    <import xlink:href="../Common/parameters.cellml">
+        <component component_ref="model_initials" name="model_initials"/>
+    </import>
+    <import xlink:href="../Components/Ca_Intracellular_Flux(J_S1S2)/J_S1S2.cellml">
         <component component_ref="JS1S2" name="JS1S2"/>
     </import>
-    <import xlink:href="../Components/J_IPR3.cellml">
+    <import xlink:href="../Components/IPR3(J_IPR3)/J_IPR3.cellml">
         <component component_ref="JIPR" name="JIPR"/>
     </import>
-    <import xlink:href="../Components/J_SERCA.cellml">
-        <component component_ref="JSERCA" name="JSERCA"/>
-    </import>
-    <import xlink:href="../Components/Membrane_voltage.cellml">
-        <component component_ref="membrane" name="membrane"/>
-    </import>
-    <import xlink:href="../Components/J_NCX.cellml">
-        <component component_ref="JNCX" name="JNCX"/>
-    </import>
-    <import xlink:href="../Components/J_MCU.cellml">
+    <import xlink:href="../Components/MCU(J_MCU)/J_MCU.cellml">
         <component component_ref="JMCU" name="JMCU"/>
     </import>
-    <import xlink:href="../Components/Ca_PM.cellml">
-        <component component_ref="I_PM" name="I_PM"/>
+    <import xlink:href="../Components/Ca_Na_Exchanger(J_NCX)/J_NCX.cellml">
+        <component component_ref="JNCX" name="JNCX"/>
     </import>
-    <import xlink:href="../Components/Ca_MT.cellml">
+    <import xlink:href="../Components/SERCA/J_SERCA.cellml">
+        <component component_ref="JSERCA" name="JSERCA"/>
+    </import>
+    <import xlink:href="../Components/CMT(Ca_MT)/Ca_MT.cellml">
         <component component_ref="CMT" name="CMT"/>
     </import>
-    <import xlink:href="../Components/ICa.cellml">
-        <component component_ref="I_Ca" name="I_Ca"/>
-    </import>
-    <import xlink:href="../Components/INSCC_Ca.cellml">
-        <component component_ref="I_NSCC_Ca" name="I_NSCC_Ca"/>
-    </import>
-    <import xlink:href="../Components/INSCC_Na.cellml">
-        <component component_ref="I_NSCC_Na" name="I_NSCC_Na"/>
-    </import>
-    <import xlink:href="../Components/I_Na_P.cellml">
-        <component component_ref="I_Na" name="I_Na"/>
-    </import>
-    <import xlink:href="../Components/N_S1.cellml">
+    <import xlink:href="../Components/NS1/N_S1.cellml">
         <component component_ref="NS1" name="NS1"/>
     </import>
-    <import xlink:href="../Components/Ca_ER.cellml">
+    <import xlink:href="../Components/CER(Ca_ER)/Ca_ER.cellml">
         <component component_ref="CER" name="CER"/>
     </import>
-    <import xlink:href="../Components/Ca_S1.cellml">
+    <import xlink:href="../Components/Ca_Cytosolic_Subspace1(Ca_S1)/Ca_S1.cellml">
         <component component_ref="CS1" name="CS1"/>
     </import>
-    <import xlink:href="../Components/Ca_S2.cellml">
+    <import xlink:href="../Components/Ca_Cytosolic_Subspace2(Ca_S2)/Ca_S2.cellml">
         <component component_ref="CS2" name="CS2"/>
     </import>
+    <import xlink:href="../Components/Ca_PM/Ca_PM.cellml">
+        <component component_ref="I_PM" name="I_PM"/>
+    </import>
+    <import xlink:href="../Components/CICR(ICa)/ICa.cellml">
+        <component component_ref="I_Ca" name="I_Ca"/>
+    </import>
+    <import xlink:href="../Components/NSCC_Ca/INSCC_Ca.cellml">
+        <component component_ref="I_NSCC_Ca" name="I_NSCC_Ca"/>
+    </import>
+    <import xlink:href="../Components/NSCC_Na/INSCC_Na.cellml">
+        <component component_ref="I_NSCC_Na" name="I_NSCC_Na"/>
+    </import>
+    <import xlink:href="../Components/Outward_Na_Pump(I_Na_P)/I_Na_P.cellml">
+        <component component_ref="I_Na" name="I_Na"/>
+    </import>
+    <import xlink:href="../Components/Membrane_Vm/Membrane_voltage.cellml">
+        <component component_ref="Vm" name="Vm"/>
+    </import>
     <connection>
-        <map_components component_1="membrane" component_2="environment"/>
+        <map_components component_1="Vm" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="JS1S2" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="JNCX" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="I_PM" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="I_Ca" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="JMCU" component_2="environment"/>
         <map_variables variable_1="time" variable_2="time"/>
     </connection>
     <connection>
@@ -97,12 +120,38 @@
         <map_variables variable_1="time" variable_2="time"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="CS1"/>
+        <map_components component_1="Vm" component_2="CS1"/>
         <map_variables variable_1="I_iCa" variable_2="I_iCa"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="NS1"/>
+        <map_components component_1="Vm" component_2="NS1"/>
         <map_variables variable_1="I_iNa" variable_2="I_iNa"/>
+        <map_variables variable_1="NS1" variable_2="NS1"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="CS2"/>
+        <map_variables variable_1="CS2" variable_2="CS2"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="JIPR"/>
+        <map_variables variable_1="JIPR" variable_2="JIPR"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="JMCU"/>
+        <map_variables variable_1="JMCU" variable_2="JMCU"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="JNCX"/>
+        <map_variables variable_1="JNCX" variable_2="JNCX"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="JS1S2"/>
+        <map_variables variable_1="JS1S2" variable_2="JS1S2"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="JSERCA"/>
+        <map_variables variable_1="JSERCA" variable_2="JSERCA"/>
     </connection>
     <connection>
         <map_components component_1="JS1S2" component_2="CS1"/>
@@ -138,6 +187,10 @@
         <map_variables variable_1="gamma_ER" variable_2="gamma_ER"/>
     </connection>
     <connection>
+        <map_components component_1="model_initials" component_2="CS1"/>
+        <map_variables variable_1="CS1_initial" variable_2="CS1_initial"/>
+    </connection>
+    <connection>
         <map_components component_1="JS1S2" component_2="CS2"/>
         <map_variables variable_1="CS2" variable_2="CS2"/>
         <map_variables variable_1="JS1S2" variable_2="JS1S2"/>
@@ -164,6 +217,10 @@
         <map_variables variable_1="gamma_ER" variable_2="gamma_ER"/>
     </connection>
     <connection>
+        <map_components component_1="model_initials" component_2="CS2"/>
+        <map_variables variable_1="CS2_initial" variable_2="CS2_initial"/>
+    </connection>
+    <connection>
         <map_components component_1="JSERCA" component_2="CER"/>
         <map_variables variable_1="CER" variable_2="CER"/>
         <map_variables variable_1="JSERCA" variable_2="JSERCA"/>
@@ -188,16 +245,24 @@
         <map_variables variable_1="delta_s" variable_2="delta_s"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="I_Ca"/>
+        <map_components component_1="Vm" component_2="I_Ca"/>
         <map_variables variable_1="I_Ca" variable_2="I_Ca"/>
         <map_variables variable_1="Vm" variable_2="Vm"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="I_PM"/>
+        <map_components component_1="Vm" component_2="I_PM"/>
         <map_variables variable_1="I_PM" variable_2="I_PM"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="I_NSCC_Ca"/>
+        <map_components component_1="Vm" component_2="CER"/>
+        <map_variables variable_1="CER" variable_2="CER"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="CMT"/>
+        <map_variables variable_1="CMT" variable_2="CMT"/>
+    </connection>
+    <connection>
+        <map_components component_1="Vm" component_2="I_NSCC_Ca"/>
         <map_variables variable_1="I_NSCC_Ca" variable_2="I_NSCC_Ca"/>
         <map_variables variable_1="Vm" variable_2="Vm"/>
     </connection>
@@ -208,11 +273,11 @@
         <map_variables variable_1="KNSCC" variable_2="KNSCC"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="I_Na"/>
+        <map_components component_1="Vm" component_2="I_Na"/>
         <map_variables variable_1="I_Na" variable_2="I_Na"/>
     </connection>
     <connection>
-        <map_components component_1="membrane" component_2="I_NSCC_Na"/>
+        <map_components component_1="Vm" component_2="I_NSCC_Na"/>
         <map_variables variable_1="I_NSCC_Na" variable_2="I_NSCC_Na"/>
         <map_variables variable_1="Vm" variable_2="Vm"/>
     </connection>
@@ -237,19 +302,29 @@
         <map_components component_1="I_Na" component_2="NS1"/>
         <map_variables variable_1="NS1" variable_2="NS1"/>
     </connection>
-    <component name="output">
-        <variable name="time" public_interface="in" units="second"/>
-        <variable name="Vm" public_interface="in" units="millivolt"/>
-        <variable name="I_iCa" public_interface="in" units="picoampere"/>
-        <variable name="I_iNa" public_interface="in" units="picoampere"/>
-        <variable name="I_Ca" public_interface="in" units="picoampere"/>
-        <variable name="I_Na" public_interface="in" units="picoampere"/>
-        <variable name="I_NSCC_Ca" public_interface="in" units="picoampere"/>
-        <variable name="I_PM" public_interface="in" units="picoampere"/>
-        <variable name="I_NSCC_Na" public_interface="in" units="picoampere"/>
+    <component name="outputs">
+        <variable name="time" private_interface="out" public_interface="in" units="second"/>
+        <variable name="Vm" private_interface="out" public_interface="in" units="millivolt"/>
+        <variable name="I_iCa" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_iNa" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_Ca" private_interface="in" public_interface="out" units="picoampere"/>
+        <variable name="I_Na" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_NSCC_Ca" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_PM" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="I_NSCC_Na" private_interface="out" public_interface="in" units="picoampere"/>
+        <variable name="CER" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="NS1" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CMT" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CS1" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="CS2" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable name="JIPR" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JMCU" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JNCX" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JS1S2" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JSERCA" private_interface="out" public_interface="in" units="flux"/>
     </component>
     <connection>
-        <map_components component_1="output" component_2="membrane"/>
+        <map_components component_1="outputs" component_2="Vm"/>
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="Vm" variable_2="Vm"/>
         <map_variables variable_1="I_iCa" variable_2="I_iCa"/>
@@ -259,9 +334,15 @@
         <map_variables variable_1="I_PM" variable_2="I_PM"/>
         <map_variables variable_1="I_NSCC_Ca" variable_2="I_NSCC_Ca"/>
         <map_variables variable_1="I_NSCC_Na" variable_2="I_NSCC_Na"/>
-    </connection>
-    <connection>
-        <map_components component_1="output" component_2="environment"/>
-        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="CER" variable_2="CER"/>
+        <map_variables variable_1="NS1" variable_2="NS1"/>
+        <map_variables variable_1="CMT" variable_2="CMT"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
+        <map_variables variable_1="CS2" variable_2="CS2"/>
+        <map_variables variable_1="JIPR" variable_2="JIPR"/>
+        <map_variables variable_1="JMCU" variable_2="JMCU"/>
+        <map_variables variable_1="JNCX" variable_2="JNCX"/>
+        <map_variables variable_1="JS1S2" variable_2="JS1S2"/>
+        <map_variables variable_1="JSERCA" variable_2="JSERCA"/>
     </connection>
 </model>

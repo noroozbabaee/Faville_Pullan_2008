@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_INSCC" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="time_units" units_ref="time_units"/>
+        <units name="millimolar" units_ref="millimolar"/>
+        <units name="R_units" units_ref="R_units"/>
+        <units name="F_units" units_ref="F_units"/>
+        <units name="Temperature_units" units_ref="Temperature_units"/>
+        <units name="conductance_units" units_ref="conductance_units"/>
+        <units name="Inverse_Voltage_units" units_ref="Inverse_Voltage_units"/>
+        <units name="voltage_units" units_ref="voltage_units"/>
+        <units name="current_units" units_ref="current_units"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <import xlink:href="INSCC.cellml">
+        <component component_ref="I_NSCC_SM" name="I_NSCC_SM"/>
+    </import>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="parameter_values" name="parameter_values"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="I_NSCC_SM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="Ca_i" variable_2="Ca_i"/>
+        <map_variables variable_1="Vm_SM" variable_2="Vm_SM"/>
+    </connection>
+    <connection>
+        <map_components component_1="parameter_values" component_2="I_NSCC_SM"/>
+        <map_variables variable_1="RToF" variable_2="RToF"/>
+        <map_variables variable_1="Ach" variable_2="Ach"/>
+    </connection>
+    <component name="output">
+        <variable name="time" public_interface="out" units="time_units"/>
+        <variable name="Vm_SM" public_interface="in" units="voltage_units"/>
+        <variable name="f_ca_NSCC_SM" public_interface="in" units="voltage_units"/>
+        <variable name="I_NSCC_SM" public_interface="in" units="current_units"/>
+        <variable name="rach_NSCC_SM" public_interface="in" units="dimensionless"/>
+    </component>
+    <connection>
+        <map_components component_1="output" component_2="I_NSCC_SM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="Vm_SM" variable_2="Vm_SM"/>
+        <map_variables variable_1="rach_NSCC_SM" variable_2="rach_NSCC_SM"/>
+        <map_variables variable_1="f_ca_NSCC_SM" variable_2="f_ca_NSCC_SM"/>
+        <map_variables variable_1="I_NSCC_SM" variable_2="I_NSCC_SM"/>
+    </connection>
+</model>

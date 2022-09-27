@@ -8,13 +8,14 @@
         <units name="micromolar_coulomb" units_ref="micromolar_coulomb"/>
     </import>
     <component name="CS1">
-        <variable initial_value="0.120" name="CS1" public_interface="out" units="micromolar"/>
+        <variable name="CS1_initial" private_interface="out" public_interface="in" units="micromolar"/>
+        <variable initial_value="CS1_initial" name="CS1" public_interface="out" units="micromolar"/>
         <variable name="lambda_MT_S1" units="dimensionless"/>
         <variable name="lambda_ER_S1" units="dimensionless"/>
-        <variable name="JS1S2" public_interface="in" units="flux"/>
-        <variable name="JNCX" public_interface="in" units="flux"/>
-        <variable name="JSERCA" public_interface="in" units="flux"/>
-        <variable name="I_iCa" public_interface="in" units="picoampere"/>
+        <variable name="JS1S2" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JNCX" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="JSERCA" private_interface="out" public_interface="in" units="flux"/>
+        <variable name="I_iCa" private_interface="out" public_interface="in" units="picoampere"/>
         <variable name="delta_s" public_interface="in" units="micromolar_coulomb"/>
         <variable name="gamma_S1" public_interface="in" units="dimensionless"/>
         <variable name="gamma_MT" public_interface="in" units="dimensionless"/>

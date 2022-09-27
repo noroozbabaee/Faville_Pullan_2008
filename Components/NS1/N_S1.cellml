@@ -3,11 +3,12 @@
     <import xlink:href="../Common/units.cellml">
         <units name="micromolar" units_ref="micromolar"/>
         <units name="picoampere" units_ref="picoampere"/>
+        <units name="micromolar_coulomb" units_ref="micromolar_coulomb"/>
     </import>
     <component name="NS1">
         <variable initial_value="1.01E4" name="NS1" public_interface="out" units="micromolar"/>
         <variable name="delta_s" public_interface="in" units="micromolar_coulomb"/>
-        <variable name="I_iNa" public_interface="in" units="picoampere"/>
+        <variable name="I_iNa" private_interface="out" public_interface="in" units="picoampere"/>
         <variable name="time" public_interface="in" units="second"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>

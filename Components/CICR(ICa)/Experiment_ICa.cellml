@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_ICa" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="millivolt" units_ref="millivolt"/>
+    </import>
+    <import xlink:href="../common/environment.cellml">
+        <component component_ref="environment" name="environment"/>
+    </import>
+    <import xlink:href="../CICR(ICa)/ICa.cellml">
+        <component component_ref="I_Ca" name="I_Ca"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="I_Ca"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
+        <map_variables variable_1="Vm" variable_2="Vm"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="experiment" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="model_parameters" name="model_parameters"/>
+    </import>
+    <connection>
+        <map_components component_1="model_parameters" component_2="I_Ca"/>
+        <map_variables variable_1="R" variable_2="R"/>
+        <map_variables variable_1="F" variable_2="F"/>
+        <map_variables variable_1="T" variable_2="T"/>
+        <map_variables variable_1="CO" variable_2="CO"/>
+    </connection>
+    <component name="outputs">
+        <variable name="time" public_interface="in" units="second"/>
+        <variable name="I_Ca" public_interface="in" units="picoampere"/>
+    </component>
+    <connection>
+        <map_components component_1="outputs" component_2="I_Ca"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="I_Ca" variable_2="I_Ca"/>
+    </connection>
+</model>

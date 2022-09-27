@@ -22,13 +22,13 @@ conductance, are activated by depletion of sub-plasma-membrane [Ca2+] caused by 
 ATPase Ca2+ sequestration. Furthermore, pacemaker activity predicted by the current model persists under simulated voltage clamp and
 is independent of [IP3] oscillations.
 
-.. image:: Faville_2008.png
+.. image:: ReadMe/Faville_2008.png
    :width: 70%
    :alt: Schematic diagram.
 
 
 Schematic diagram of the ICC pacemaker unit showing all the components involved in the modelling framework. The ionic conductances
-and their respective interactions with the intracellular organelles and cytoplasmic subspaces are displayed. The four compartmental volumes comprising the pacemaker unit are
+and their respective interactions with the intracellular organelles and cytoplasmic subspaces are displayed. The compartmental volumes comprising the pacemaker unit are
 
 
 1. The dynamics of the endoplasmic reticulum (ER),

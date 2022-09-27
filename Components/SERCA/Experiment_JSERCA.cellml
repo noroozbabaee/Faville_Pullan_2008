@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_JSERCA" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="flux" units_ref="flux"/>
+        <units name="micromolar" units_ref="micromolar"/>
+        <units name="per_micromolar" units_ref="per_micromolar"/>
+        <units name="per_micromolar2" units_ref="per_micromolar2"/>
+        <units name="first_order_rate_constant" units_ref="first_order_rate_constant"/>
+    </import>
+    <import xlink:href="C:/Users/lnor300/Documents/CellML/12_Labors/GI_system/Stomach/Faville_Pullan_2008/Ca_Cytosolic_Subspace1/CS1.cellml">
+        <component component_ref="CS1" name="CS1"/>
+    </import>
+    <import xlink:href="C:/Users/lnor300/Documents/CellML/12_Labors/GI_system/Stomach/Faville_Pullan_2008/CER/CER.cellml">
+        <component component_ref="CS1" name="CS1"/>
+    </import>
+    <import xlink:href="JSERCA.cellml">
+        <component component_ref="JSERCA" name="JSERCA"/>
+    </import>
+    <import xlink:href="../common/parameters.cellml">
+        <component component_ref="parameter_values" name="parameter_values"/>
+    </import>
+    <component name="output">
+        <variable name="JSERCA" public_interface="in" units="flux"/>
+    </component>
+    <connection>
+        <map_components component_1="output" component_2="JSERCA"/>
+        <map_variables variable_1="JSERCA" variable_2="JSERCA"/>
+    </connection>
+</model>

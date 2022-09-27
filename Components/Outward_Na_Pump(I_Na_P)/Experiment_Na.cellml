@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model name="experiment_Ikr" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="../common/units.cellml">
+        <units name="picoampere" units_ref="picoampere"/>
+        <units name="femtoampere" units_ref="femtoampere"/>
+        <units name="millimolar" units_ref="millimolar"/>
+    </import>
+    <import xlink:href="../common/generator.cellml">
+        <component component_ref="experiment" name="experiment"/>
+    </import>
+    <connection>
+        <map_components component_1="experiment" component_2="I_PM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <import xlink:href="Ca_PM.cellml">
+        <component component_ref="I_PM" name="I_PM"/>
+    </import>
+    <component name="output">
+        <variable name="time" public_interface="out" units="time_units"/>
+        <variable name="CS1" private_interface="in" units="micromolar"/>
+        <variable name="I_PM" private_interface="in" units="picoampere"/>
+    </component>
+    <connection>
+        <map_components component_1="output" component_2="I_PM"/>
+        <map_variables variable_1="time" variable_2="time"/>
+        <map_variables variable_1="I_PM" variable_2="I_PM"/>
+        <map_variables variable_1="CS1" variable_2="CS1"/>
+    </connection>
+</model>
